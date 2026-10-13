@@ -1,0 +1,77 @@
+{
+ "fetched_date": "2026-10-13",
+ "units": {
+  "time": "iso8601",
+  "temperature_2m_max": "\u00b0C",
+  "temperature_2m_min": "\u00b0C",
+  "precipitation_sum": "mm",
+  "precipitation_probability_max": "%",
+  "et0_fao_evapotranspiration": "mm",
+  "wind_speed_10m_max": "km/h"
+ },
+ "daily": {
+  "time": [
+   "2026-10-13",
+   "2026-10-14",
+   "2026-10-15",
+   "2026-10-16",
+   "2026-10-17",
+   "2026-10-18",
+   "2026-10-19"
+  ],
+  "temperature_2m_max": [
+   34.9,
+   34.5,
+   34.8,
+   35.1,
+   35.3,
+   35.3,
+   35.2
+  ],
+  "temperature_2m_min": [
+   23.3,
+   24.4,
+   24.8,
+   23.4,
+   24.2,
+   24.6,
+   25.3
+  ],
+  "precipitation_sum": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "precipitation_probability_max": [
+   0,
+   4,
+   6,
+   0,
+   4,
+   4,
+   4
+  ],
+  "et0_fao_evapotranspiration": [
+   4.82,
+   4.88,
+   4.64,
+   4.22,
+   4.27,
+   4.59,
+   4.62
+  ],
+  "wind_speed_10m_max": [
+   8.6,
+   10.6,
+   10.2,
+   5.9,
+   4.4,
+   9.3,
+   8.0
+  ]
+ }
+}
