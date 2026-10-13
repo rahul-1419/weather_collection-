@@ -35,7 +35,7 @@ DAILY_VARS = [
     "precipitation_probability_max", "et0_fao_evapotranspiration",
     "wind_speed_10m_max",
 ]
-FIELDS = ["time"] + HOURLY_VARS  # time is UTC, e.g. 2026-10-13T05:00
+FIELDS = ["time", "time_ist"] + HOURLY_VARS  # time = UTC; time_ist = India time
 
 
 DATA_DIR = Path(os.environ.get("DATA_DIR", "data"))
@@ -73,6 +73,14 @@ def fetch_json(url, retries=4):
 def _s(v):
     return "" if v is None else str(v)
 
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def to_ist(t):
+    """UTC 'YYYY-MM-DDTHH:MM' -> India time 'YYYY-MM-DD HH:MM'."""
+    dt = datetime.strptime(t, "%Y-%m-%dT%H:%M").replace(tzinfo=timezone.utc)
+    return dt.astimezone(IST).strftime("%Y-%m-%d %H:%M")
+
 
 def parse_hourly(payload, now):
     """Rows up to and including the current UTC hour (future hours dropped)."""
@@ -109,7 +117,9 @@ def write_month(path, rows):
         w = csv.DictWriter(f, fieldnames=FIELDS)
         w.writeheader()
         for t in sorted(rows):
-            w.writerow({k: rows[t].get(k, "") for k in FIELDS})
+            row = {k: rows[t].get(k, "") for k in FIELDS}
+            row["time_ist"] = to_ist(t)
+            w.writerow(row)
     os.replace(tmp, path)  # atomic: no half-written CSV if interrupted
 
 
